@@ -1,6 +1,7 @@
 package com.example.study.repository;
 
 import com.example.study.StudyApplicationTests;
+import com.example.study.model.entity.Item;
 import com.example.study.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +34,16 @@ class UserRepositoryTest extends StudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void read(){
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(7L);
         user.ifPresent(selectUser -> {
-            System.out.println("user: " + selectUser);
-            System.out.println("email: " + selectUser.getEmail());
+            //System.out.println("user: " + selectUser);
+            //System.out.println("email: " + selectUser.getEmail());
+            selectUser.getOrderDetailList().stream().forEach(detail->{
+                Item item = detail.getItem();
+                System.out.println(item);
+            });
         });
     }
 
@@ -71,7 +77,6 @@ class UserRepositoryTest extends StudyApplicationTests {
         }else{
             System.out.println("User delete -> 데이터 없음");
         }
-
         // Assert.assertFalse(deleteUser.isPresent());  -> false
 
     }
