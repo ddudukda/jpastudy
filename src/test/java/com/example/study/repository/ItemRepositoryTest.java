@@ -28,11 +28,8 @@ public class ItemRepositoryTest extends StudyApplicationTests {
     @Test
     public void read(){
         Long id = 1L;
-
         Optional<Item> item = itemRepository.findById(id);
-
-        item.ifPresent(i -> {
-            System.out.println(i);
-        });
+        Assert.notNull(item,"item read()");
+        // item.ifPresent(i -> {System.out.println(i);});
     }
 }
