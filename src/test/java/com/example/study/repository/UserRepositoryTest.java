@@ -36,7 +36,8 @@ class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transactional
     public void read(){
-        Optional<User> user = userRepository.findById(7L);
+        //Optional<User> user = userRepository.findById(7L);
+        Optional<User> user = userRepository.findByAccount("dadak");
         user.ifPresent(selectUser -> {
             //System.out.println("user: " + selectUser);
             //System.out.println("email: " + selectUser.getEmail());
